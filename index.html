@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escâner Ultra Secreto</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#111827);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    width:90%;
+    max-width:500px;
+    background:#1f2937;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,.5);
+}
+
+h1{
+    margin-bottom:15px;
+}
+
+p{
+    color:#cbd5e1;
+    margin-bottom:25px;
+}
+
+button{
+    background:#3b82f6;
+    color:white;
+    border:none;
+    padding:15px 35px;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#barra{
+    width:100%;
+    height:18px;
+    background:#374151;
+    border-radius:20px;
+    margin-top:25px;
+    display:none;
+    overflow:hidden;
+}
+
+#progresso{
+    width:0%;
+    height:100%;
+    background:#22c55e;
+    transition:.2s;
+}
+
+#status{
+    margin-top:18px;
+    font-size:18px;
+}
+
+#resultado{
+    margin-top:25px;
+    font-size:24px;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🔍 Escâner Ultra Secreto</h1>
+
+<p>Clique no botão para descobrir um segredo escondido no seu dispositivo.</p>
+
+<button onclick="iniciar()">Iniciar Escaneamento</button>
+
+<div id="barra">
+<div id="progresso"></div>
+</div>
+
+<div id="status"></div>
+
+<div id="resultado"></div>
+
+</div>
+
+<script>
+
+function iniciar(){
+
+document.querySelector("button").disabled=true;
+
+document.getElementById("barra").style.display="block";
+
+let progresso=0;
+
+const mensagens=[
+"Iniciando...",
+"Analisando memes...",
+"Calculando nível de vergonha...",
+"Procurando figurinhas...",
+"Verificando histórico de piadas...",
+"Quase terminando..."
+];
+
+let etapa=0;
+
+const intervalo=setInterval(()=>{
+
+progresso+=2;
+
+document.getElementById("progresso").style.width=progresso+"%";
+
+if(progresso%18===0 && etapa<mensagens.length){
+document.getElementById("status").innerHTML=mensagens[etapa];
+etapa++;
+}
+
+if(progresso>=100){
+
+clearInterval(intervalo);
+
+document.getElementById("resultado").style.display="block";
+
+const frases=[
+"😂 Resultado: Você foi diagnosticado com excesso de zoeira.",
+"🤡 Atenção! Detectamos um profissional em mandar memes às 3 da manhã.",
+"🐸 Nível de humor encontrado: 9999.",
+"🎉 Parabéns! Você caiu na pegadinha.",
+"🍕 Seu prêmio é uma pizza... imaginária."
+];
+
+const aleatoria=Math.floor(Math.random()*frases.length);
+
+document.getElementById("resultado").innerHTML=frases[aleatoria];
+
+document.getElementById("status").innerHTML="Escaneamento concluído.";
+
+}
+
+},70);
+
+}
+
+</script>
+
+</body>
+</html>
